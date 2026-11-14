@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, JetBrains_Mono, Courier_Prime } from "next/font/google";
-import { Nav } from "@/components/nav";
+import { Suspense } from "react";
+import { Nav, NavView } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
@@ -40,7 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="av-bg" />
         <div className="av-noise" />
         <div id="root">
-          <Nav />
+          <Suspense fallback={<NavView pathname={null} />}>
+            <Nav />
+          </Suspense>
           <main className="av-main">{children}</main>
           <Footer />
         </div>
